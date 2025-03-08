@@ -10,43 +10,48 @@ public class Main {
         String input = scanner.nextLine();
         System.out.println(evaluate(input));
     }
-    static Integer evaluate(String s){
-        // Convert the string into a tokenized string array
+    static String evaluate(String s){
         int sLength = s.length();
-        String[] expression = new String[]{};
-        for (int i = 0; i <= sLength; i++){
+        // Create a tokenized string array
+        ArrayList<String> expression = new ArrayList<>();
+        for (int i = 0; i < sLength; i++){
             char c = s.charAt(i);
             if (Character.isDigit(c)){
+                StringBuilder num = new StringBuilder();
                 int j = i;
-                while(Character.isDigit(c)){
-                    expression[i] += String.valueOf(s.charAt(j));
-                    if (j < sLength){
-                        c = s.charAt(j++);
+                boolean period = false;
+                while((Character.isDigit(c) || c == ',' || c == '.') && j < sLength){
+                    c = s.charAt(j);
+                    if (Character.isDigit(c)) {
+                        num.append(String.valueOf(c));
                     }
-                    else {
-                        break;
+                    else if (c == '.' && !period){
+                        period = true;
+                        num.append(String.valueOf(c));
                     }
+                    j++;
                 }
+                i = j - 2;
+                expression.add(num.toString());
             }
             else if (c == '-' || c == '+' || c == '*' || c == '/' || c == '^' || c == '%' || c == '!' || c == '(' || c == ')'){
-                expression[i] = String.valueOf(s.charAt(i));
+                expression.add(String.valueOf(s.charAt(i)));
             }
-            else if (c != ' '){
-                // If the character isn't a space then something has been inputted wrong
-                // TODO: ERROR HANDLING
+            else if (c == ' ' || c == ','){
+                // Ignore spaces and commas
+            }
+            else {
+                // A letter or some other invalid character has been inputted or a comma is out of place
+                return "Invalid input.";
             }
         }
-        // Evaluate the tokenized char array known as expression
+        // Convert the tokenized string array in reverse polish notation evaluating during the process (shunting yard algorithm)
+        // https://en.wikipedia.org/wiki/Shunting_yard_algorithm
+        /*
         Stack<Character> operators = new Stack<>();
         Stack<Character> output = new Stack<>();
-        int i = 0;
-        char c = s.charAt(i);
-        while (i <= sLength){
-            if (Character.isDigit(s.charAt(i))){
-
-            }
-        }
-        return 0;
+         */
+        return String.valueOf(expression);
     }
 }
 
