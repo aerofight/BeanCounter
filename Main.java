@@ -1,6 +1,8 @@
 import java.util.*;
 
 // Operator list : '-', '+', '*', '/', '^', '%', '!', '(', ')'
+// Function list : 'sin', 'cos', 'tan', 'csc', 'cos', 'cot'
+// Constant list : 'pi', 'e'
 
 public class Main {
 
@@ -15,6 +17,7 @@ public class Main {
     static String evaluate(String s){
         int sLength = s.length();
         // Create a tokenized string array
+        // TODO: convert string list into token list using custom token class
         ArrayList<String> expression = new ArrayList<>();
         for (int i = 0; i < sLength; i++){
             char c = s.charAt(i);
@@ -48,12 +51,11 @@ public class Main {
             }
         }
 
-        // Convert the tokenized string array in reverse polish notation evaluating during the process (shunting yard algorithm)
-        // https://en.wikipedia.org/wiki/Shunting_yard_algorithm
-        /*
-        Stack<Character> operators = new Stack<>();
-        Stack<Character> output = new Stack<>();
-         */
+        // Convert the tokenized string array in reverse polish notation evaluating during the process (shunting yard algorithm) https://en.wikipedia.org/wiki/Shunting_yard_algorithm
+        int expressionLength = expression.size();
+        for (int i = 0; i < expressionLength; i++){
+
+        }
         return String.valueOf(expression);
     }
 }
