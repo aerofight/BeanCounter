@@ -47,6 +47,7 @@ public class Main {
                 return "Invalid input.";
             }
         }
+        
         // Convert the tokenized string array in reverse polish notation evaluating during the process (shunting yard algorithm)
         // https://en.wikipedia.org/wiki/Shunting_yard_algorithm
         /*
