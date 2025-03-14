@@ -3,6 +3,7 @@ import java.util.*;
 // Operator list : '-', '+', '*', '/', '^', '%', '!', '(', ')'
 
 public class Main {
+
     public static void main(String[] args) {
         // Call for input and store in expression String
         Scanner scanner = new Scanner(System.in);
@@ -10,6 +11,7 @@ public class Main {
         String input = scanner.nextLine();
         System.out.println(evaluate(input));
     }
+
     static String evaluate(String s){
         int sLength = s.length();
         // Create a tokenized string array
